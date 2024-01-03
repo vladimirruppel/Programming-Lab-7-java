@@ -48,7 +48,7 @@ public class Main {
             System.out.print(lists.get(i).GetSize());
             if (i < lists.size() - 1) System.out.print(", ");
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
 }
