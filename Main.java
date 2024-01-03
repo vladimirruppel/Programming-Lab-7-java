@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,13 +25,31 @@ public class Main {
 
         System.out.println("В самом начале:");
         DisplayLists(lists);
+
+        // сортировка по количеству треков в треклисте
+        Collections.sort(lists, (a, b) -> Integer.compare(a.GetSize(), b.GetSize()));
+
+        System.out.println("После сортировки по количеству треков в плейлисте:");
+        DisplayLists(lists);
+
+        // поиск по имени треки
+        String searchName = "Космос";
+        TrackList result = lists.stream()
+                .filter(list -> list.Contains(searchName))
+                .findFirst()
+                .orElse(null);
+
+        System.out.println("Найденный треклист с треком с названием \"" + searchName + "\":");
+        result.Display();
     }
 
     private static void DisplayLists(ArrayList<TrackList> lists) {
-        int i = 1;
-        for (TrackList list : lists) {
-            System.out.print("Треклист #" + i++ + ":\n");
-            list.Display();
+        System.out.print("Количества прослушиваний треков: ");
+        for (int i = 0; i < lists.size(); i++) {
+            System.out.print(lists.get(i).GetSize());
+            if (i < lists.size() - 1) System.out.print(", ");
         }
+        System.out.println();
     }
+
 }

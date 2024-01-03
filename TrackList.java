@@ -50,6 +50,15 @@ public class TrackList implements DisplayItem, Cloneable {
         trackList.remove(index);
     }
 
+    public boolean Contains(String trackName) {
+        for (AudioFile track : trackList) {
+            if (track.GetTrackName() == trackName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean Contains(AudioFile track) {
         return trackList.contains(track);
     }
